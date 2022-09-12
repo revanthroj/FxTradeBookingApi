@@ -14,13 +14,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class FxTradeBookingDao {
-	static int tradeNo = 0;
+	static int tradeNo = 1;
 	private Connection con;
 	private String query;
 	private Statement statement;
 	private static float tranferRate;
 	static String CurrencyPair = "USDINR";
-
+	
 	static TradeBookedData tradeBookedData;
 	static FxTradBookingModel tradeData = new FxTradBookingModel();
 
@@ -35,6 +35,9 @@ public class FxTradeBookingDao {
 	}
 
 	public String bookTrade(FxTradBookingModel data) throws SQLException {
+		if(tradeNo == 1) {
+			deleteData();
+		}
 		if ((tradeProcess.inrConverter(Long.parseLong(data.getTransferAmount())).equals("Please Enter valid amount"))) {
 			return "Please Enter valid amount";
 		}
@@ -57,7 +60,7 @@ public class FxTradeBookingDao {
 	}
 
 	private String insertTrade(FxTradBookingModel data) throws SQLException {
-		query = "insert into fxtradebooking(TradeNo, CurrencyPair, CustomerName, Amount,Rate) values(" + (++tradeNo)
+		query = "insert into fxtradebooking(TradeNo, CurrencyPair, CustomerName, Amount,Rate) values(" + (tradeNo++)
 				+ ",'" + data.getCurrencyPair().toUpperCase() + "','" + data.getUsername() + "','"
 				+ tradeProcess.inrConverter(Long.parseLong(data.getTransferAmount())) + "','" + tranferRate + "')";
 		statement.executeUpdate(query);
@@ -84,8 +87,11 @@ public class FxTradeBookingDao {
 	}
 
 	public String deleteTable() throws SQLException {
+		deleteData();
+		return "Bye - have a good day";
+	}
+	public void deleteData() throws SQLException {
 		query = "truncate table fxtradebooking";
 		statement.executeUpdate(query);
-		return "Bye - have a good day";
 	}
 }

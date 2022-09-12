@@ -79,4 +79,10 @@ public class FxTradeBookingDao {
 		System.out.println("null");
 		return null;
 	}
+
+	public String deleteTable() throws SQLException {
+		query = "truncate table fxtradebooking";
+		statement.executeUpdate(query);
+		return "Bye - have a good day";
+	}
 }

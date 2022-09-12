@@ -24,4 +24,8 @@ public class FxTradeBookingService {
 		return dao.printTrade();
 	}
 
+	public String deleteTable() throws SQLException {
+		return dao.deleteTable();
+	}
+
 }

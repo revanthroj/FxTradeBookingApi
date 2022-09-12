@@ -7,6 +7,7 @@ import com.finzly.fxtradbooking.model.FxTradBookingModel;
 import com.finzly.fxtradbooking.service.FxTradeBookingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,5 +31,8 @@ public class FxTradeBookingController {
 	public ArrayList<FxTradBookingModel> printTrade() throws SQLException {
 		return service.printTrade();
 	}
-
+	@DeleteMapping("/exit")
+	public String deleteTable() throws SQLException {
+		return service.deleteTable();
+	}
 }

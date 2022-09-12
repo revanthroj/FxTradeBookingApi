@@ -32,7 +32,6 @@ public class FxTradeBookingDao {
 	}
 
 	public String bookTrade(FxTradBookingModel data) throws SQLException {
-		System.out.println(data);
 		if ((tradeProcess.inrConverter(Long.parseLong(data.getTransferAmount())).equals("Please Enter valid amount"))) {
 			return "Please Enter valid amount";
 		}
@@ -55,7 +54,6 @@ public class FxTradeBookingDao {
 	}
 
 	private String insertTrade(FxTradBookingModel data) throws SQLException {
-		System.out.println(tradeNo);
 		query = "insert into fxtradebooking(TradeNo, CurrencyPair, CustomerName, Amount,Rate) values(" + (++tradeNo)
 				+ ",'" + data.getCurrencyPair().toUpperCase() + "','" + data.getUsername() + "','"
 				+ tradeProcess.inrConverter(Long.parseLong(data.getTransferAmount())) + "','" + tranferRate + "')";
@@ -75,7 +73,7 @@ public class FxTradeBookingDao {
 						rs.getString("CustomerName"), rs.getString("Amount"), tranferRate);
 				bookedTrade.add(tradeData);
 			}
-			System.out.println(bookedTrade);
+			System.out.println("Booked Trade Details "+bookedTrade);
 			return bookedTrade;
 		}
 		System.out.println("null");

@@ -78,7 +78,7 @@ public class FxTradBookingModel {
 		this.tranferRate = tranferRate;
 	}
 
-	private String isRate;
+	private String isRate ;
 	private String bookOrcancel;
 
 	public String getIsRate() {

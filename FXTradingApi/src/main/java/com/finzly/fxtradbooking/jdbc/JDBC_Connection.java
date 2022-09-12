@@ -24,8 +24,8 @@ public class JDBC_Connection {
 		try {
 			getCon = new JDBC_Connection();
 			Class.forName(driver);
-			 con = DriverManager.getConnection(url, username, password);
-			 return con;
+			con = DriverManager.getConnection(url, username, password);
+			return con;
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

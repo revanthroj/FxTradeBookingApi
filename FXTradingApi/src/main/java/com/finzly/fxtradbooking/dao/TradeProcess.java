@@ -8,15 +8,14 @@ public class TradeProcess {
 	static String CurrencyPair = "USDINR";
 	private static Long usdToinr;
 	private static float tranferRate = 66.00f;
-	
+
 	public String currencyPairCheck(String currencyPair) {
 		if (CurrencyPair.equalsIgnoreCase(currencyPair)) {
 			return currencyPair;
 		}
 		return ("Only" + CurrencyPair + " is accepted Try Again..");
 	}
-	
-	
+
 	public String inrConverter(Long transAmountLong) {
 		if (transAmountLong > 0) {
 			usdToinr = (long) (transAmountLong * tranferRate);

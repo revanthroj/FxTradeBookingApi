@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.finzly.fxtradbooking.dao.FxTradeBookingDao;
 import com.finzly.fxtradbooking.model.FxTradBookingModel;
+import com.finzly.fxtradbooking.model.TradeBookedData;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class FxTradeBookingService {
 		return status;
 	}
 
-	public ArrayList<FxTradBookingModel> printTrade() throws SQLException {
+	public ArrayList<TradeBookedData> printTrade() throws SQLException {
 		return dao.printTrade();
 	}
 

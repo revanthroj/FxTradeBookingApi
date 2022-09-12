@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import com.finzly.fxtradbooking.jdbc.JDBC_Connection;
 import com.finzly.fxtradbooking.model.FxTradBookingModel;
+import com.finzly.fxtradbooking.model.TradeBookedData;
+
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -19,13 +21,14 @@ public class FxTradeBookingDao {
 	private static float tranferRate;
 	static String CurrencyPair = "USDINR";
 
+	static TradeBookedData tradeBookedData;
 	static FxTradBookingModel tradeData = new FxTradBookingModel();
 
 	TradeProcess tradeProcess = new TradeProcess();
 	static ArrayList<FxTradBookingModel> table = new ArrayList<>();
 
 	public FxTradeBookingDao() throws SQLException {
-		float rate = 66.09f;
+		float rate = 66.00f;
 		tranferRate = rate;
 		con = JDBC_Connection.getConnection();
 		statement = con.createStatement();
@@ -63,15 +66,15 @@ public class FxTradeBookingDao {
 				+ " will be transferred in 2 working days to " + data.getUsername() + ".";
 	}
 
-	public ArrayList<FxTradBookingModel> printTrade() throws SQLException {
+	public ArrayList<TradeBookedData> printTrade() throws SQLException {
 		query = "select TradeNo,CurrencyPair,CustomerName,Amount,Rate from fxtradebooking";
 		ResultSet rs = statement.executeQuery(query);
-		ArrayList<FxTradBookingModel> bookedTrade = new ArrayList<>();
+		ArrayList<TradeBookedData> bookedTrade = new ArrayList<>();
 		if (rs != null) {
 			while (rs.next()) {
-				tradeData = new FxTradBookingModel(rs.getLong("TradeNo"), rs.getString("CurrencyPair"),
+				tradeBookedData = new TradeBookedData(rs.getLong("TradeNo"), rs.getString("CurrencyPair"),
 						rs.getString("CustomerName"), rs.getString("Amount"), tranferRate);
-				bookedTrade.add(tradeData);
+				bookedTrade.add(tradeBookedData);
 			}
 			System.out.println("Booked Trade Details "+bookedTrade);
 			return bookedTrade;

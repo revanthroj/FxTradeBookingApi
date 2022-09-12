@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.finzly.fxtradbooking.model.FxTradBookingModel;
+import com.finzly.fxtradbooking.model.TradeBookedData;
 import com.finzly.fxtradbooking.service.FxTradeBookingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class FxTradeBookingController {
 	}
 //	to printTrade data
 	@GetMapping("/printTrade")
-	public ArrayList<FxTradBookingModel> printTrade() throws SQLException {
+	public ArrayList<TradeBookedData> printTrade() throws SQLException {
 		return service.printTrade();
 	}
 //	Delete Table Data And to exit

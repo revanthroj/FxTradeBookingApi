@@ -19,18 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class FxTradeBookingController {
 	@Autowired
 	private FxTradeBookingService service;
-
+// 	to insert trade details into database
 	@PostMapping("/bookTrade")
 	public String bookTrade(@RequestBody FxTradBookingModel data) throws SQLException {
 		System.out.println(data);
 		String status = service.bookTrade(data);
 		return status;
 	}
-
+//	to printTrade data
 	@GetMapping("/printTrade")
 	public ArrayList<FxTradBookingModel> printTrade() throws SQLException {
 		return service.printTrade();
 	}
+//	Delete Table Data And to exit
 	@DeleteMapping("/exit")
 	public String deleteTable() throws SQLException {
 		return service.deleteTable();
